@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)https://www.audero.it/demo/device-orientation-api-demo.html -->
+<html class="translated-ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  <meta name="viewport" content="width=device-width,initial-scale=1"> <meta name="author" content="Aurelio De Rosa"> <title>Device Orientation API Demo by Aurelio De Rosa</title> <style>*
+         {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+         }
+
+         body
+         {
+            max-width: 500px;
+            margin: 2em auto;
+            padding: 0 0.5em;
+            font-size: 20px;
+         }
+
+         h1
+         {
+            text-align: center;
+         }
+
+         .api-support
+         {
+            display: block;
+         }
+
+         .hidden
+         {
+            display: none;
+         }
+
+         .cube
+         {
+            width: 150px;
+            height: 150px;
+            position: relative;
+            margin: 30px auto;
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+         }
+
+         .face
+         {
+            width: 150px;
+            height: 150px;
+            position: absolute;
+            font-size: 80px;
+            text-align: center;
+            line-height: 150px;
+            background-color: #999999;
+            box-shadow: inset 0 0 20px #333333;
+            opacity: 0.6;
+         }
+
+         .cube .one
+         {
+            -webkit-transform: translateZ(75px);
+            transform: translateZ(75px);
+         }
+
+         .cube .two
+         {
+            -webkit-transform: rotateY(90deg) translateZ(75px);
+            transform: rotateY(90deg) translateZ(75px);
+         }
+
+         .cube .three
+         {
+            -webkit-transform: rotateY(180deg) translateZ(75px);
+            transform: rotateY(180deg) translateZ(75px);
+         }
+
+         .cube .four
+         {
+            -webkit-transform: rotateY(-90deg) translateZ(75px);
+            transform: rotateY(-90deg) translateZ(75px);
+         }
+
+         .cube .five
+         {
+            -webkit-transform: rotateX(90deg) translateZ(75px);
+            transform: rotateX(90deg) translateZ(75px);
+         }
+
+         .cube .six
+         {
+            -webkit-transform: rotateX(-90deg) translateZ(75px) rotate(0deg);
+            transform: rotateX(-90deg) translateZ(75px) rotate(0deg);
+         }
+
+         .value
+         {
+            font-weight: bold;
+         }
+
+         .author
+         {
+            display: block;
+            margin-top: 1em;
+         }</style> <style></style><link type="text/css" rel="stylesheet" charset="UTF-8" href="./app_files/translateelement.css"></head> <body cz-shortcut-listen="true"> <a href="http://code.tutsplus.com/tutorials/an-introduction-to-the-device-orientation-api--cms-21067"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Voltar ao artigo</font></font></a> <h1><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">API de orientação do dispositivo</font></font></h1> <span id="do-unsupported" class="api-support hidden">deviceorientation event not supported</span> <span id="dm-unsupported" class="api-support hidden">devicemotion event not supported</span> <span id="cnc-unsupported" class="api-support"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">evento compassneedscalibration não suportado</font></font></span> <div id="do-results"> <div id="cube" class="cube"> <div class="face one"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1</font></font></div> <div class="face two"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2</font></font></div> <div class="face three"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3</font></font></div> <div class="face four"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">4</font></font></div> <div class="face five"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">5</font></font></div> <div class="face six"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">6</font></font></div> </div> <div id="do-info" class=""> <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Coordenadas: ( </font></font><span id="beta" class="value"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> , </font></font><span id="gamma" class="value"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> , </font></font><span id="alpha" class="value"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ) </font></font><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Posição absoluta? </font></font><span id="is-absolute" class="value"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">falso</font></font></span> </p> </div> <div id="dm-info" class=""> <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Aceleração: ( </font></font><span id="acceleration-x" class="value"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> , </font></font><span id="acceleration-y" class="value"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> , </font></font><span id="acceleration-z" class="value"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ) m / s </font></font><sup><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2</font></font></sup> </p> <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Aceleração incluindo gravidade: ( </font></font><span id="acceleration-including-gravity-x" class="value"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> , </font></font><span id="acceleration-including-gravity-y" class="value"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> , </font></font><span id="acceleration-including-gravity-z" class="value"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ) m / s </font></font><sup><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2</font></font></sup> </p> <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Taxa de rotação: ( </font></font><span id="rotation-rate-beta" class="value"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> , </font></font><span id="rotation-rate-gamma" class="value"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> , </font></font><span id="rotation-rate-alpha" class="value"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> )</font></font></p> <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Intervalo: </font></font><span id="interval" class="value"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">16</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> milissegundos</font></font></p> </div> </div> <small class="author"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Demonstração criada por </font></font><a href="https://www.audero.it/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Aurelio De Rosa</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ( </font></font><a href="https://twitter.com/AurelioDeRosa"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">@AurelioDeRosa</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ). </font></font><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Esta demonstração faz parte do </font></font><a href="https://github.com/AurelioDeRosa/HTML5-API-demos"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">repositório de demos da API</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> do </font><a href="https://github.com/AurelioDeRosa/HTML5-API-demos"><font style="vertical-align: inherit;">HTML5</font></a><font style="vertical-align: inherit;"> .</font></font></small> <script>if (!('ondeviceorientation' in window)) {
+            document.getElementById('do-unsupported').classList.remove('hidden');
+         } else {
+            document.getElementById('do-info').classList.remove('hidden');
+
+            window.addEventListener('deviceorientation', function(event) {
+               document.getElementById('cube').style.webkitTransform =
+               document.getElementById('cube').style.transform =
+                       'rotateX(' + event.beta + 'deg) ' +
+                       'rotateY(' + event.gamma + 'deg) ' +
+                       'rotateZ(' + event.alpha + 'deg)';
+
+               document.getElementById('beta').innerHTML = Math.round(event.beta);
+               document.getElementById('gamma').innerHTML = Math.round(event.gamma);
+               document.getElementById('alpha').innerHTML = Math.round(event.alpha);
+               document.getElementById('is-absolute').innerHTML = event.absolute ? "true" : "false";
+            });
+         }
+
+         if (!('ondevicemotion' in window)) {
+            document.getElementById('dm-unsupported').classList.remove('hidden');
+         } else {
+            document.getElementById('dm-info').classList.remove('hidden');
+
+            window.addEventListener('devicemotion', function(event) {
+               document.getElementById('acceleration-x').innerHTML = Math.round(event.acceleration.x);
+               document.getElementById('acceleration-y').innerHTML = Math.round(event.acceleration.y);
+               document.getElementById('acceleration-z').innerHTML = Math.round(event.acceleration.z);
+
+               document.getElementById('acceleration-including-gravity-x').innerHTML =
+                       Math.round(event.accelerationIncludingGravity.x);
+               document.getElementById('acceleration-including-gravity-y').innerHTML =
+                       Math.round(event.accelerationIncludingGravity.y);
+               document.getElementById('acceleration-including-gravity-z').innerHTML =
+                       Math.round(event.accelerationIncludingGravity.z);
+
+               document.getElementById('rotation-rate-beta').innerHTML = Math.round(event.rotationRate.beta);
+               document.getElementById('rotation-rate-gamma').innerHTML = Math.round(event.rotationRate.gamma);
+               document.getElementById('rotation-rate-alpha').innerHTML = Math.round(event.rotationRate.alpha);
+
+               document.getElementById('interval').innerHTML = event.interval;
+            });
+         }
+
+         if (!('oncompassneedscalibration' in window)) {
+            document.getElementById('cnc-unsupported').classList.remove('hidden');
+         } else {
+            window.addEventListener('compassneedscalibration', function(event) {
+               alert('Compass needs calibrating! Wave your device in a figure-eight motion');
+            });
+         }</script><div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="./app_files/translate_24dp.png" width="20" height="20" alt="Google Tradutor"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">Texto original</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">Sugerir uma tradução melhor</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;"><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div>  <div class="goog-te-spinner-pos"><div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px" height="96px" viewBox="0 0 66 66"><circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg></div></div></body></html>
